@@ -171,7 +171,7 @@ function loadSample() { document.getElementById('evidenceInput').value=SAMPLE_EV
 async function runAnalysis() {
   const evidence = document.getElementById('evidenceInput').value.trim();
   const kol = document.getElementById('kolInput').value.trim();
-  const apiKey = "sk-ant-api03-" + "A9ShPyHWzN4l20xTjixMIt8gzQ7-3VFfowUqFR1Qp3OVV1ncy0Oomooyww1WjpoS-iOM3kRoZD4hEAgsaOTFNg-OOYbCAAA"
+  const apiKey = await getApiKey();
   const errMsg = document.getElementById('errMsg');
   const runBtn = document.getElementById('runBtn');
   const btnLabel = document.getElementById('btnLabel');
