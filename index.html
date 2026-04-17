@@ -167,7 +167,11 @@ function showApp() { document.getElementById('landing').style.display='none'; do
 function showAppWithSample() { showApp(); loadSample(); }
 function showLanding() { document.getElementById('landing').style.display='flex'; document.getElementById('app').classList.remove('visible'); }
 function loadSample() { document.getElementById('evidenceInput').value=SAMPLE_EVIDENCE; document.getElementById('kolInput').value=SAMPLE_KOL; }
-
+async function getApiKey() {
+  const res = await fetch('/api/analyze');
+  const data = await res.json();
+  return data.key;
+}
 async function runAnalysis() {
   const evidence = document.getElementById('evidenceInput').value.trim();
   const kol = document.getElementById('kolInput').value.trim();
