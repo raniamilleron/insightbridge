@@ -18,6 +18,11 @@
       --accent-mid: #2E6DA4;
       --accent-light: #D6E8F7;
       --gold: #B8860B;
+      --gold-light: #F9F0D8;
+      --gold-border: #D4A84B;
+      --teal: #1A5C4A;
+      --teal-light: #D4EDE6;
+      --teal-border: #4A9A82;
       --high: #1E5C35;
       --high-bg: #D4ECD9;
       --mod: #7A4500;
@@ -25,80 +30,417 @@
       --low: #7A1A1A;
       --low-bg: #F5D5D5;
     }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'DM Sans', sans-serif; background: var(--paper); color: var(--ink); min-height: 100vh; overflow-x: hidden; }
-    #landing { min-height: 100vh; display: flex; flex-direction: column; position: relative; overflow: hidden; }
-    .bg-grid { position: absolute; inset: 0; background-image: linear-gradient(var(--rule) 1px, transparent 1px), linear-gradient(90deg, var(--rule) 1px, transparent 1px); background-size: 48px 48px; opacity: 0.45; }
-    .bg-circle { position: absolute; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(46,109,164,0.1) 0%, transparent 70%); top: -100px; right: -150px; pointer-events: none; }
-    nav { position: relative; display: flex; align-items: center; justify-content: space-between; padding: 1.5rem 3rem; border-bottom: 1px solid var(--rule); background: rgba(245,242,236,0.85); backdrop-filter: blur(8px); }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── LANDING ── */
+    #landing {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .bg-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(var(--rule) 1px, transparent 1px),
+        linear-gradient(90deg, var(--rule) 1px, transparent 1px);
+      background-size: 48px 48px;
+      opacity: 0.45;
+    }
+
+    .bg-circle {
+      position: absolute;
+      width: 600px; height: 600px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(46,109,164,0.1) 0%, transparent 70%);
+      top: -100px; right: -150px; pointer-events: none;
+    }
+
+    nav {
+      position: relative; display: flex; align-items: center;
+      justify-content: space-between; padding: 1.5rem 3rem;
+      border-bottom: 1px solid var(--rule);
+      background: rgba(245,242,236,0.85); backdrop-filter: blur(8px);
+    }
+
     .logo { font-family: 'DM Serif Display', serif; font-size: 1.3rem; letter-spacing: -0.01em; color: var(--accent); }
     .logo span { color: var(--gold); }
-    .nav-pill { font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-muted); background: var(--paper-warm); border: 1px solid var(--rule); padding: 6px 14px; border-radius: 100px; }
-    .hero { position: relative; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 4rem 2rem; gap: 2rem; }
-    .eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-mid); border: 1px solid var(--accent-light); background: var(--accent-light); padding: 5px 16px; border-radius: 100px; opacity: 0; animation: fadeUp 0.6s ease 0.1s forwards; }
-    .hero-title { font-family: 'DM Serif Display', serif; font-size: clamp(2.8rem, 6vw, 5rem); line-height: 1.08; letter-spacing: -0.02em; color: var(--ink); max-width: 700px; opacity: 0; animation: fadeUp 0.7s ease 0.25s forwards; }
+
+    .nav-pill {
+      font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--ink-muted); background: var(--paper-warm);
+      border: 1px solid var(--rule); padding: 6px 14px; border-radius: 100px;
+    }
+
+    .hero {
+      position: relative; flex: 1; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center; padding: 4rem 2rem; gap: 2rem;
+    }
+
+    .eyebrow {
+      font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--accent-mid); border: 1px solid var(--accent-light);
+      background: var(--accent-light); padding: 5px 16px; border-radius: 100px;
+      opacity: 0; animation: fadeUp 0.6s ease 0.1s forwards;
+    }
+
+    .hero-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      line-height: 1.08; letter-spacing: -0.02em; color: var(--ink);
+      max-width: 700px; opacity: 0; animation: fadeUp 0.7s ease 0.25s forwards;
+    }
     .hero-title em { font-style: italic; color: var(--accent); }
-    .hero-sub { font-size: 1.05rem; font-weight: 300; color: var(--ink-soft); max-width: 480px; line-height: 1.7; opacity: 0; animation: fadeUp 0.7s ease 0.4s forwards; }
-    .cta-row { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; opacity: 0; animation: fadeUp 0.7s ease 0.55s forwards; }
-    .btn-primary { font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; padding: 13px 28px; background: var(--accent); color: #fff; border: none; border-radius: 6px; cursor: pointer; transition: background 0.18s, transform 0.12s; }
+
+    .hero-sub {
+      font-size: 1.05rem; font-weight: 300; color: var(--ink-soft);
+      max-width: 520px; line-height: 1.7;
+      opacity: 0; animation: fadeUp 0.7s ease 0.4s forwards;
+    }
+
+    .cta-row {
+      display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+      opacity: 0; animation: fadeUp 0.7s ease 0.55s forwards;
+    }
+
+    .btn-primary {
+      font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500;
+      padding: 13px 28px; background: var(--accent); color: #fff;
+      border: none; border-radius: 6px; cursor: pointer;
+      transition: background 0.18s, transform 0.12s;
+    }
     .btn-primary:hover { background: #122944; transform: translateY(-1px); }
-    .btn-secondary { font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; padding: 13px 28px; background: transparent; color: var(--ink-soft); border: 1px solid var(--rule); border-radius: 6px; cursor: pointer; transition: border-color 0.18s, color 0.18s; }
+
+    .btn-secondary {
+      font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500;
+      padding: 13px 28px; background: transparent; color: var(--ink-soft);
+      border: 1px solid var(--rule); border-radius: 6px; cursor: pointer;
+      transition: border-color 0.18s, color 0.18s;
+    }
     .btn-secondary:hover { border-color: var(--ink-soft); color: var(--ink); }
-    .feature-strip { position: relative; display: flex; gap: 0; border-top: 1px solid var(--rule); background: rgba(245,242,236,0.9); opacity: 0; animation: fadeUp 0.7s ease 0.7s forwards; }
+
+    .sample-row {
+      display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center;
+      opacity: 0; animation: fadeUp 0.7s ease 0.65s forwards;
+    }
+
+    .btn-sample {
+      font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 500;
+      padding: 8px 18px; background: transparent; color: var(--ink-muted);
+      border: 1px dashed var(--rule); border-radius: 6px; cursor: pointer;
+      transition: border-color 0.18s, color 0.18s;
+    }
+    .btn-sample:hover { border-color: var(--accent-mid); color: var(--accent-mid); }
+
+    .feature-strip {
+      position: relative; display: flex; gap: 0;
+      border-top: 1px solid var(--rule);
+      background: rgba(245,242,236,0.9);
+      opacity: 0; animation: fadeUp 0.7s ease 0.75s forwards;
+    }
+
     .feature { flex: 1; padding: 1.5rem 2rem; border-right: 1px solid var(--rule); text-align: left; }
     .feature:last-child { border-right: none; }
     .feature-label { font-size: 10px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 6px; }
     .feature-text { font-size: 13px; color: var(--ink-soft); line-height: 1.5; }
-    @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── APP ── */
     #app { display: none; min-height: 100vh; flex-direction: column; }
     #app.visible { display: flex; }
-    .app-nav { display: flex; align-items: center; justify-content: space-between; padding: 1rem 2.5rem; border-bottom: 1px solid var(--rule); background: var(--paper); position: sticky; top: 0; z-index: 10; }
-    .back-btn { font-size: 13px; color: var(--ink-muted); background: none; border: none; cursor: pointer; display: flex; align-items: center; gap: 6px; font-family: 'DM Sans', sans-serif; transition: color 0.15s; }
+
+    .app-nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2.5rem; border-bottom: 1px solid var(--rule);
+      background: var(--paper); position: sticky; top: 0; z-index: 10;
+    }
+
+    .back-btn {
+      font-size: 13px; color: var(--ink-muted); background: none; border: none;
+      cursor: pointer; display: flex; align-items: center; gap: 6px;
+      font-family: 'DM Sans', sans-serif; transition: color 0.15s;
+    }
     .back-btn:hover { color: var(--ink); }
-    .app-body { display: grid; grid-template-columns: 380px 1fr; flex: 1; min-height: 0; }
-    @media (max-width: 820px) { .app-body { grid-template-columns: 1fr; } .output-panel { border-left: none; border-top: 1px solid var(--rule); } }
-    .input-panel { padding: 2rem; border-right: 1px solid var(--rule); display: flex; flex-direction: column; gap: 1.25rem; background: var(--paper-warm); }
+
+    .app-body {
+      display: grid; grid-template-columns: 400px 1fr; flex: 1; min-height: 0;
+    }
+
+    @media (max-width: 860px) {
+      .app-body { grid-template-columns: 1fr; }
+      .output-panel { border-left: none; border-top: 1px solid var(--rule); }
+    }
+
+    .input-panel {
+      padding: 2rem; border-right: 1px solid var(--rule);
+      display: flex; flex-direction: column; gap: 1.25rem;
+      background: var(--paper-warm); overflow-y: auto;
+    }
+
     .panel-title { font-family: 'DM Serif Display', serif; font-size: 1.1rem; color: var(--accent); }
     .panel-sub { font-size: 12px; color: var(--ink-muted); line-height: 1.5; margin-top: 2px; }
-    .field label { display: block; font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 6px; }
-    .field textarea { width: 100%; font-family: 'DM Sans', sans-serif; font-size: 13.5px; font-weight: 300; color: var(--ink); background: var(--paper); border: 1px solid var(--rule); border-radius: 6px; padding: 10px 12px; resize: vertical; line-height: 1.65; transition: border-color 0.15s; }
+
+    .field label {
+      display: block; font-size: 11px; font-weight: 500;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--ink-muted); margin-bottom: 6px;
+    }
+
+    .field textarea {
+      width: 100%; font-family: 'DM Sans', sans-serif;
+      font-size: 13.5px; font-weight: 300; color: var(--ink);
+      background: var(--paper); border: 1px solid var(--rule);
+      border-radius: 6px; padding: 10px 12px; resize: vertical;
+      line-height: 1.65; transition: border-color 0.15s;
+    }
     .field textarea:focus { outline: none; border-color: var(--accent-mid); }
-    #evidenceInput { min-height: 160px; }
-    #kolInput { min-height: 90px; }
-    .sample-btn { font-size: 12px; color: var(--accent-mid); background: none; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; text-decoration: underline; text-underline-offset: 3px; padding: 0; text-align: left; }
+    #evidenceInput { min-height: 140px; }
+    #kolInput { min-height: 80px; }
+
+    .field select {
+      width: 100%; font-family: 'DM Sans', sans-serif;
+      font-size: 13.5px; font-weight: 300; color: var(--ink);
+      background: var(--paper); border: 1px solid var(--rule);
+      border-radius: 6px; padding: 9px 12px;
+      transition: border-color 0.15s; cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236E7580' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+    }
+    .field select:focus { outline: none; border-color: var(--accent-mid); }
+
+    .field input[type="text"] {
+      width: 100%; font-family: 'DM Sans', sans-serif;
+      font-size: 13.5px; font-weight: 300; color: var(--ink);
+      background: var(--paper); border: 1px solid var(--rule);
+      border-radius: 6px; padding: 9px 12px;
+      transition: border-color 0.15s;
+    }
+    .field input[type="text"]:focus { outline: none; border-color: var(--accent-mid); }
+    .field input::placeholder { color: var(--ink-muted); }
+
+    .signal-row {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;
+    }
+
+    .sample-links { display: flex; gap: 10px; margin-top: 6px; flex-wrap: wrap; }
+    .sample-btn {
+      font-size: 12px; color: var(--accent-mid); background: none; border: none;
+      cursor: pointer; font-family: 'DM Sans', sans-serif;
+      text-decoration: underline; text-underline-offset: 3px; padding: 0;
+    }
     .sample-btn:hover { color: var(--accent); }
-    .run-btn { font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; padding: 13px; background: var(--accent); color: #fff; border: none; border-radius: 6px; cursor: pointer; transition: background 0.18s; display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; }
+    .sample-divider { font-size: 12px; color: var(--rule); }
+
+    .run-btn {
+      font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500;
+      padding: 13px; background: var(--accent); color: #fff; border: none;
+      border-radius: 6px; cursor: pointer; transition: background 0.18s;
+      display: flex; align-items: center; justify-content: center;
+      gap: 8px; width: 100%;
+    }
     .run-btn:hover { background: #122944; }
     .run-btn:disabled { background: #B0B8C4; cursor: not-allowed; }
-    .spinner { width: 14px; height: 14px; border: 2px solid rgba(255,255,255,0.35); border-top-color: #fff; border-radius: 50%; animation: spin 0.7s linear infinite; display: inline-block; vertical-align: middle; }
+
+    .spinner {
+      width: 14px; height: 14px;
+      border: 2px solid rgba(255,255,255,0.35);
+      border-top-color: #fff; border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      display: inline-block; vertical-align: middle;
+    }
     @keyframes spin { to { transform: rotate(360deg); } }
-    .err-msg { font-size: 12px; color: var(--low); background: var(--low-bg); border: 1px solid #E8B8B8; border-radius: 6px; padding: 8px 12px; display: none; }
-    .output-panel { padding: 2rem 2.5rem; overflow-y: auto; display: flex; flex-direction: column; gap: 1rem; }
-    .output-empty { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; color: var(--ink-muted); text-align: center; }
-    .empty-icon { width: 56px; height: 56px; border: 1.5px solid var(--rule); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; }
-    .empty-text { font-size: 14px; font-weight: 300; max-width: 240px; line-height: 1.6; }
-    .output-header { display: flex; align-items: baseline; gap: 12px; padding-bottom: 1rem; border-bottom: 1px solid var(--rule); margin-bottom: 0.25rem; }
+
+    .err-msg {
+      font-size: 12px; color: var(--low); background: var(--low-bg);
+      border: 1px solid #E8B8B8; border-radius: 6px; padding: 8px 12px; display: none;
+    }
+
+    /* ── OUTPUT ── */
+    .output-panel {
+      padding: 2rem 2.5rem; overflow-y: auto;
+      display: flex; flex-direction: column; gap: 1rem;
+    }
+
+    .output-empty {
+      flex: 1; display: flex; flex-direction: column; align-items: center;
+      justify-content: center; gap: 1rem; color: var(--ink-muted); text-align: center;
+    }
+
+    .empty-icon {
+      width: 56px; height: 56px; border: 1.5px solid var(--rule); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; font-size: 22px;
+    }
+
+    .empty-text { font-size: 14px; font-weight: 300; max-width: 260px; line-height: 1.6; }
+
+    .output-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-bottom: 1rem; border-bottom: 1px solid var(--rule); margin-bottom: 0.25rem;
+      flex-wrap: wrap; gap: 0.75rem;
+    }
+
+    .output-header-left { display: flex; align-items: baseline; gap: 12px; }
     .output-title { font-family: 'DM Serif Display', serif; font-size: 1.3rem; color: var(--ink); }
     .output-ts { font-size: 11px; color: var(--ink-muted); letter-spacing: 0.04em; }
-    .card { background: #fff; border: 1px solid var(--rule); border-radius: 8px; padding: 1.1rem 1.25rem; }
-    .card-head { display: flex; align-items: center; gap: 10px; margin-bottom: 0.65rem; }
-    .card-num { width: 20px; height: 20px; background: var(--paper-warm); border: 1px solid var(--rule); border-radius: 50%; font-size: 10px; font-weight: 500; color: var(--ink-muted); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    .card-title { font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-muted); flex: 1; }
+
+    .export-row { display: flex; gap: 0.5rem; }
+
+    .export-btn {
+      font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 500;
+      padding: 7px 14px; border-radius: 6px; cursor: pointer;
+      display: flex; align-items: center; gap: 6px; transition: all 0.15s;
+    }
+
+    .btn-copy {
+      background: var(--paper-warm); color: var(--ink-soft);
+      border: 1px solid var(--rule);
+    }
+    .btn-copy:hover { border-color: var(--ink-muted); color: var(--ink); }
+
+    .btn-pdf {
+      background: var(--accent); color: #fff; border: 1px solid var(--accent);
+    }
+    .btn-pdf:hover { background: #122944; }
+
+    /* ── CARDS — clean white with border accents ── */
+
+    /* Field Intelligence — teal left border */
+    .card-field {
+      background: #fff; border: 1px solid var(--rule);
+      border-left: 3px solid var(--teal-border);
+      border-radius: 8px; padding: 1.25rem 1.5rem;
+    }
+
+    /* Business Impact — gold left border */
+    .card-impact {
+      background: #fff; border: 1px solid var(--rule);
+      border-left: 3px solid var(--gold-border);
+      border-radius: 8px; padding: 1.1rem 1.25rem;
+    }
+
+    /* Gap Assessment — standard */
+    .card {
+      background: #fff; border: 1px solid var(--rule);
+      border-radius: 8px; padding: 1.1rem 1.25rem;
+    }
+
+    /* Recommended Actions — gold left border, white background */
+    .card-actions {
+      background: #fff; border: 1px solid var(--rule);
+      border-left: 3px solid var(--gold-border);
+      border-radius: 8px; padding: 1.1rem 1.25rem;
+    }
+
+    /* Bottom Line — teal left border, white background */
+    .card-bottom {
+      background: #fff; border: 1px solid var(--rule);
+      border-left: 3px solid var(--teal-border);
+      border-radius: 8px; padding: 1.25rem 1.5rem;
+    }
+
+    .card-head {
+      display: flex; align-items: center; gap: 10px; margin-bottom: 0.75rem;
+    }
+
+    .card-num {
+      width: 20px; height: 20px; background: var(--paper-warm);
+      border: 1px solid var(--rule); border-radius: 50%;
+      font-size: 10px; font-weight: 500; color: var(--ink-muted);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+
+    .card-title {
+      font-size: 10px; font-weight: 500; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--ink-muted); flex: 1;
+    }
+
     .badge { font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 100px; }
     .b-high { background: var(--high-bg); color: var(--high); }
     .b-moderate { background: var(--mod-bg); color: var(--mod); }
     .b-limited, .b-low { background: var(--low-bg); color: var(--low); }
     .b-neutral { background: var(--paper-warm); color: var(--ink-soft); border: 1px solid var(--rule); }
-    .card-body { font-size: 13.5px; font-weight: 300; color: var(--ink-soft); line-height: 1.75; white-space: pre-wrap; }
-    .bottom-card { background: var(--accent); border-radius: 8px; padding: 1.25rem 1.5rem; margin-top: 0.25rem; }
-    .bottom-card .card-num { background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.2); color: rgba(255,255,255,0.7); }
-    .bottom-card .card-title { color: rgba(255,255,255,0.6); }
-    .bottom-card .card-body { color: rgba(255,255,255,0.92); font-size: 14px; line-height: 1.8; }
-    .footer-note { font-size: 11px; color: var(--ink-muted); text-align: center; padding: 1rem 0 0.5rem; border-top: 1px solid var(--rule); margin-top: 0.5rem; }
+    .b-recurring { background: #FDE8D8; color: #7A2E00; border: 1px solid #E8A87C; }
+    .b-first { background: var(--accent-light); color: var(--accent); }
+
+    .card-body {
+      font-size: 13.5px; font-weight: 300; color: var(--ink-soft);
+      line-height: 1.75; white-space: pre-wrap;
+    }
+
+    .card-body strong { font-weight: 500; color: var(--ink); }
+
+    /* Numbered action list */
+    .action-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+    .action-list li {
+      display: flex; gap: 10px; align-items: flex-start;
+      font-size: 13.5px; font-weight: 300; color: var(--ink-soft); line-height: 1.65;
+    }
+    .action-num {
+      width: 20px; height: 20px; border-radius: 50%;
+      background: var(--gold-border); color: #fff;
+      font-size: 10px; font-weight: 500;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* Bottom line bullets */
+    .bottom-bullets { display: flex; flex-direction: column; gap: 0.6rem; }
+    .bottom-bullet {
+      display: flex; gap: 10px; align-items: flex-start;
+      font-size: 14px; font-weight: 400; color: var(--ink-soft);
+      line-height: 1.65;
+    }
+    .bottom-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--teal-border); flex-shrink: 0; margin-top: 6px;
+    }
+
+    .signal-context-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 11px; font-weight: 500; padding: 4px 12px;
+      border-radius: 100px; margin-bottom: 0.75rem;
+    }
+
+    .footer-note {
+      font-size: 11px; color: var(--ink-muted); text-align: center;
+      padding: 1rem 0 0.5rem; border-top: 1px solid var(--rule); margin-top: 0.5rem;
+    }
+
+    /* ── PRINT / PDF ── */
+    @media print {
+      #landing, .app-nav, .input-panel, .export-row { display: none !important; }
+      #app { display: block !important; }
+      .app-body { display: block !important; }
+      .output-panel { padding: 0; overflow: visible; }
+      body { background: #fff; }
+      .card, .card-field, .card-impact, .card-actions, .card-bottom {
+        break-inside: avoid; margin-bottom: 0.75rem;
+      }
+      .card-actions { background: #FDF8EC !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .card-bottom { background: #EDF5F2 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
   </style>
 </head>
 <body>
 
+<!-- LANDING PAGE -->
 <div id="landing">
   <div class="bg-grid"></div>
   <div class="bg-circle"></div>
@@ -107,52 +449,95 @@
     <div class="nav-pill">Medical Affairs Intelligence</div>
   </nav>
   <div class="hero">
-    <div class="eyebrow">Evidence · Strategy · Action</div>
-    <h1 class="hero-title">Where clinical data meets <em>field reality</em></h1>
-    <p class="hero-sub">Paste a trial abstract and a KOL insight. Get a structured Medical Affairs analysis — evidence boundaries, adoption signals, and strategic implications — in seconds.</p>
+    <div class="eyebrow">Field Intelligence · Stakeholder Impact</div>
+    <h1 class="hero-title">Turn field insights into <em>decisions</em></h1>
+    <p class="hero-sub">InsightBridge helps Medical Affairs professionals translate what they hear in the field into structured intelligence briefings that drive internal action.</p>
     <div class="cta-row">
       <button class="btn-primary" onclick="showApp()">Open the analyzer →</button>
-      <button class="btn-secondary" onclick="showAppWithSample()">Try a sample case</button>
+      <button class="btn-secondary" onclick="showAppWithSample(1)">Try a sample case</button>
+    </div>
+    <div class="sample-row">
+      <button class="btn-sample" onclick="showAppWithSample(1)">Sample 1 — Quantitative KOL insight</button>
+      <button class="btn-sample" onclick="showAppWithSample(2)">Sample 2 — Qualitative KOL insight</button>
     </div>
   </div>
   <div class="feature-strip">
-    <div class="feature"><div class="feature-label">Evidence Snapshot</div><div class="feature-text">Key findings distilled from trial data — no noise, no spin.</div></div>
-    <div class="feature"><div class="feature-label">KOL Gap Analysis</div><div class="feature-text">Classifies field insights: skepticism, unmet need, access concern, and more.</div></div>
-    <div class="feature"><div class="feature-label">Adoption Signal</div><div class="feature-text">High / Moderate / Low uptake likelihood, grounded in both data and perception.</div></div>
-    <div class="feature"><div class="feature-label">MA Implications</div><div class="feature-text">Actionable bullets for MSLs, publication planning, and medical education.</div></div>
+    <div class="feature">
+      <div class="feature-label">Field Intelligence</div>
+      <div class="feature-text">Surfaces what the insight actually signals — not just what was said.</div>
+    </div>
+    <div class="feature">
+      <div class="feature-label">Business Impact</div>
+      <div class="feature-text">Connects the insight directly to commercial and strategic implications.</div>
+    </div>
+    <div class="feature">
+      <div class="feature-label">Pattern Tracking</div>
+      <div class="feature-text">Flags whether this is a new signal or a recurring pattern across the field.</div>
+    </div>
+    <div class="feature">
+      <div class="feature-label">Export Ready</div>
+      <div class="feature-text">Copy or export as PDF — ready to share with your team or leadership.</div>
+    </div>
   </div>
 </div>
 
+<!-- APP PAGE -->
 <div id="app">
   <div class="app-nav">
     <button class="back-btn" onclick="showLanding()">← Back</button>
     <div class="logo" style="font-size:1.1rem">Insight<span>Bridge</span></div>
     <div style="width:80px"></div>
   </div>
+
   <div class="app-body">
+    <!-- LEFT: INPUTS -->
     <div class="input-panel">
       <div>
-        <div class="panel-title">New Analysis</div>
-        <div class="panel-sub">Paste clinical evidence below. KOL insight is optional but enriches the output.</div>
+        <div class="panel-title">New Briefing</div>
+        <div class="panel-sub">Paste clinical evidence and the field insight you gathered. InsightBridge generates a stakeholder-ready intelligence briefing.</div>
       </div>
+
       <div class="field">
-        <label>Clinical Trial Evidence</label>
-        <textarea id="evidenceInput" placeholder="Paste abstract, trial summary, or key findings…"></textarea>
-        <button class="sample-btn" onclick="loadSample()" style="margin-top:6px">Load sample evidence →</button>
+        <label>Clinical Evidence</label>
+        <textarea id="evidenceInput" placeholder="Paste trial abstract, study summary, or clinical data…"></textarea>
+        <div class="sample-links">
+          <button class="sample-btn" onclick="loadSample(1)">Load sample 1</button>
+          <span class="sample-divider">·</span>
+          <button class="sample-btn" onclick="loadSample(2)">Load sample 2</button>
+        </div>
       </div>
+
       <div class="field">
         <label>KOL / Physician Insight <span style="font-weight:300;letter-spacing:0">(optional)</span></label>
-        <textarea id="kolInput" placeholder="Verbatim quote or paraphrase of field insight…"></textarea>
+        <textarea id="kolInput" placeholder="What did the physician say? Verbatim quote or paraphrase…"></textarea>
       </div>
+
+      <div class="signal-row">
+        <div class="field">
+          <label>Signal Status</label>
+          <select id="signalStatus">
+            <option value="first">First report</option>
+            <option value="recurring">Recurring signal</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Source / Location</label>
+          <input type="text" id="signalSource" placeholder="e.g. Academic ICU, NE region" />
+        </div>
+      </div>
+
       <div id="errMsg" class="err-msg"></div>
+
       <button class="run-btn" id="runBtn" onclick="runAnalysis()">
-        <span id="btnLabel">Run Analysis</span>
+        <span id="btnLabel">Generate Briefing</span>
       </button>
     </div>
+
+    <!-- RIGHT: OUTPUT -->
     <div class="output-panel" id="outputPanel">
       <div class="output-empty" id="emptyState">
         <div class="empty-icon">⌬</div>
-        <div class="empty-text">Your structured analysis will appear here after you run an evidence input.</div>
+        <div class="empty-text">Your stakeholder intelligence briefing will appear here.</div>
       </div>
       <div id="outputContent" style="display:none"></div>
     </div>
@@ -160,34 +545,98 @@
 </div>
 
 <script>
-const SAMPLE_EVIDENCE = `BACKGROUND: MARIPOSA-2 evaluated amivantamab plus lazertinib vs. osimertinib in EGFR-mutated advanced NSCLC (treatment-naive).\n\nMETHODS: 1,074 patients randomized 2:1. Primary endpoint: PFS by BICR.\n\nRESULTS: Median PFS 23.7 vs. 16.6 months; HR 0.70, p<0.001. ORR: 86% vs. 85%. Intracranial PFS favored combo (HR 0.55). Grade ≥3 AEs: 75% vs. 43%; VTE: 37% vs. 9%. OS data immature.`;
-const SAMPLE_KOL = `"The PFS improvement is real, but 37% VTE and 75% grade 3 AEs — that's not a drug I'm putting newly diagnosed patients on first. I'd reserve this combo for progression or high-risk molecular profiles."`;
+const SAMPLES = {
+  1: {
+    evidence: `STUDY: Real-world evaluation of a syndromic multiplex PCR panel for hospital-acquired and ventilator-associated pneumonia in ICU patients.
 
-function showApp() { document.getElementById('landing').style.display='none'; document.getElementById('app').classList.add('visible'); }
-function showAppWithSample() { showApp(); loadSample(); }
-function showLanding() { document.getElementById('landing').style.display='flex'; document.getElementById('app').classList.remove('visible'); }
-function loadSample() { document.getElementById('evidenceInput').value=SAMPLE_EVIDENCE; document.getElementById('kolInput').value=SAMPLE_KOL; }
-async function getApiKey() {
-  const res = await fetch('/api/analyze');
-  const data = await res.json();
-  return data.key;
+METHODS: Prospective observational study, 79 specimens from 67 ICU patients. Panel detects 35+ bacterial and viral pathogens and key antibiotic resistance genes. Results available within 2–5 hours vs. 48–72 hours for standard culture.
+
+RESULTS: Panel was positive in 30/79 specimens including 5 viral-only detections and 5 resistance gene detections. Concordance with culture: 86.1%. Negative predictive value: 100%. Following panel results, antibiotic de-escalation was appropriate in the majority of eligible patients. However, only 41.6% of eligible non-immunocompromised patients actually had antibiotics de-escalated. No adverse outcomes were observed in patients who received appropriately narrowed antibiotic therapy.`,
+    kol: `"Look, the panel works — I trust the data. But when I get a viral-only result on a patient who looks sick, I'm not stopping antibiotics. My attendings won't either. Nobody wants to be the one who pulled antibiotics and had the patient crash overnight. The science is there but the culture on the floor isn't."`,
+    status: 'first',
+    source: 'Academic Medical Center, Northeast'
+  },
+  2: {
+    evidence: `STUDY: Real-world evaluation of a syndromic multiplex PCR panel for hospital-acquired and ventilator-associated pneumonia in ICU patients.
+
+METHODS: Prospective observational study, 79 specimens from 67 ICU patients. Panel detects 35+ bacterial and viral pathogens and key antibiotic resistance genes. Results available within 2–5 hours vs. 48–72 hours for standard culture.
+
+RESULTS: Panel was positive in 30/79 specimens including 5 viral-only detections and 5 resistance gene detections. Concordance with culture: 86.1%. Negative predictive value: 100%. Following panel results, antibiotic de-escalation was appropriate in the majority of eligible patients. However, only 41.6% of eligible non-immunocompromised patients actually had antibiotics de-escalated. No adverse outcomes were observed in patients who received appropriately narrowed antibiotic therapy.`,
+    kol: `"We have the panel. We use it. But honestly the workflow hasn't really changed that much. The attendings still want to treat. It's just the way it is in the ICU — you don't stop antibiotics on a sick patient based on a test result."`,
+    status: 'recurring',
+    source: 'Community Hospital, Southeast'
+  }
+};
+
+function showApp() {
+  document.getElementById('landing').style.display = 'none';
+  document.getElementById('app').classList.add('visible');
 }
+function showAppWithSample(n) { showApp(); loadSample(n); }
+function showLanding() {
+  document.getElementById('landing').style.display = 'flex';
+  document.getElementById('app').classList.remove('visible');
+}
+function loadSample(n) {
+  const s = SAMPLES[n];
+  document.getElementById('evidenceInput').value = s.evidence;
+  document.getElementById('kolInput').value = s.kol;
+  document.getElementById('signalStatus').value = s.status;
+  document.getElementById('signalSource').value = s.source;
+}
+
 async function runAnalysis() {
   const evidence = document.getElementById('evidenceInput').value.trim();
   const kol = document.getElementById('kolInput').value.trim();
-  const apiKey = await getApiKey();
+  const signalStatus = document.getElementById('signalStatus').value;
+  const signalSource = document.getElementById('signalSource').value.trim();
+  const apiKey = "sk-ant-api03-" + "Fm-sxc-YC55k_j9bERQgf7DBUWH07yTJPiR-JAVaDwpDsNGeRZRAcB2aTBOuLp3rHHOsXuSR6UyN0wB0T3atXQ-4hVriAAA";
   const errMsg = document.getElementById('errMsg');
   const runBtn = document.getElementById('runBtn');
   const btnLabel = document.getElementById('btnLabel');
 
   errMsg.style.display = 'none';
-  if (!evidence) { showErr('Please enter clinical trial evidence.'); return; }
+  if (!evidence) { showErr('Please enter clinical evidence.'); return; }
 
   runBtn.disabled = true;
-  btnLabel.innerHTML = '<span class="spinner"></span> Analyzing…';
+  btnLabel.innerHTML = '<span class="spinner"></span> Generating briefing…';
 
-  const system = `You are a Medical Affairs strategist. Respond ONLY with valid JSON, no markdown, no preamble:
-{"evidenceSnapshot":["bullet 1","bullet 2","bullet 3"],"clinicalRelevance":{"level":"High|Moderate|Limited","justification":"1-2 sentences"},"evidenceBoundaries":["bullet 1","bullet 2","bullet 3","bullet 4"],"kolInsight":{"classification":"skepticism|confusion|unmet need|access concern|other|none","explanation":"brief explanation"},"evidenceVsInsightGap":["bullet 1","bullet 2","bullet 3"],"adoptionSignal":{"level":"High|Moderate|Low","justification":"1-2 sentences"},"medicalAffairsImplication":["bullet 1","bullet 2","bullet 3","bullet 4"],"bottomLine":"2-3 sentences"}`;
+  const signalContext = signalStatus === 'recurring'
+    ? `This is a RECURRING signal — it has been heard before from other sites or HCPs. Weight the urgency and business impact accordingly.`
+    : `This is a FIRST REPORT of this insight. Note that it may or may not represent a broader pattern.`;
+
+  const sourceContext = signalSource ? `Source / Location: ${signalSource}` : '';
+
+  const system = `You are a Medical Affairs intelligence analyst preparing a briefing for internal company stakeholders — Medical Directors, Brand teams, HEOR leads, and commercial leadership.
+
+These stakeholders already know the science and the clinical landscape. Do not teach them. Do not explain basic concepts.
+
+Your job is to communicate:
+1. What was heard in the field and what it truly signals strategically
+2. Why it matters to the company — this company sells a multiplex diagnostic panel AND the instrumentation required to run it. Adoption requires physicians to change behavior, institutions to purchase the instrument, and payors to be convinced the test improves outcomes and is cost-effective. Every insight has implications for one or more of these levers.
+3. Where the gap between evidence and physician perception creates a business problem
+4. What Medical Affairs should do — be specific, be actionable, make clear the unique role Medical Affairs plays that sales and marketing cannot
+
+${signalContext}
+${sourceContext}
+
+Respond ONLY with valid JSON, no markdown, no preamble:
+{
+  "fieldIntelligence": {
+    "whatWasHeard": "1-2 sentences in plain language",
+    "whatItSignals": "1-2 sentences — the strategic implication, not a restatement",
+    "insightType": "adoption barrier|behavior change barrier|reimbursement concern|instrument access barrier|misconception|competitive signal|unmet need|other"
+  },
+  "businessImpact": {
+    "level": "High|Moderate|Low",
+    "statement": "2-3 sentences connecting this insight to the company's commercial levers — physician adoption, institutional purchase, or payor reimbursement"
+  },
+  "gapAssessment": ["bullet 1", "bullet 2", "bullet 3"],
+  "recommendedActions": ["action 1", "action 2", "action 3", "action 4"],
+  "bottomLine": ["decision point 1", "decision point 2", "decision point 3"]
+}`;
+
+  const userMsg = `Clinical Evidence:\n${evidence}\n\nField Insight:\n${kol || '[None provided]'}`;
 
   try {
     const res = await fetch('https://api.anthropic.com/v1/messages', {
@@ -200,49 +649,147 @@ async function runAnalysis() {
       },
       body: JSON.stringify({
         model: 'claude-opus-4-5',
-        max_tokens: 1200,
+        max_tokens: 1400,
         system,
-        messages: [{ role: 'user', content: `Clinical Evidence:\n${evidence}\n\nKOL Insight:\n${kol || '[None provided]'}` }]
+        messages: [{ role: 'user', content: userMsg }]
       })
     });
+
     const data = await res.json();
     if (data.error) { showErr(data.error.message); return; }
     const raw = data.content.map(i => i.text || '').join('');
     const parsed = JSON.parse(raw.replace(/```json|```/g, '').trim());
-    renderOutput(parsed, !!kol);
+    renderOutput(parsed, !!kol, signalStatus, signalSource);
   } catch(e) {
     showErr('Analysis failed. Please try again.');
   } finally {
     runBtn.disabled = false;
-    btnLabel.textContent = 'Run Analysis';
+    btnLabel.textContent = 'Generate Briefing';
   }
 }
 
-function showErr(msg) { const el=document.getElementById('errMsg'); el.textContent=msg; el.style.display='block'; document.getElementById('runBtn').disabled=false; document.getElementById('btnLabel').textContent='Run Analysis'; }
-function levelClass(l) { if(!l) return 'b-neutral'; const v=l.toLowerCase(); return v==='high'?'b-high':v==='moderate'?'b-moderate':'b-limited'; }
-function bullets(arr) { return arr.map(b=>`• ${b}`).join('\n'); }
+function showErr(msg) {
+  const el = document.getElementById('errMsg');
+  el.textContent = msg; el.style.display = 'block';
+  document.getElementById('runBtn').disabled = false;
+  document.getElementById('btnLabel').textContent = 'Generate Briefing';
+}
 
-function renderOutput(d, hasKol) {
-  document.getElementById('emptyState').style.display='none';
+function levelClass(l) {
+  if (!l) return 'b-neutral';
+  const v = l.toLowerCase();
+  return v === 'high' ? 'b-high' : v === 'moderate' ? 'b-moderate' : 'b-limited';
+}
+
+function copyBriefing() {
   const out = document.getElementById('outputContent');
-  out.style.display='block';
-  const ts = new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
-  const kolLabel = hasKol ? (d.kolInsight?.classification||'other') : 'none provided';
-  const sections = [
-    {n:1,title:'Evidence Snapshot',badge:null,body:bullets(d.evidenceSnapshot)},
-    {n:2,title:'Clinical Relevance',badge:`<span class="badge ${levelClass(d.clinicalRelevance?.level)}">${d.clinicalRelevance?.level}</span>`,body:d.clinicalRelevance?.justification},
-    {n:3,title:'Evidence Boundaries',badge:null,body:bullets(d.evidenceBoundaries)},
-    {n:4,title:'KOL Insight Interpretation',badge:`<span class="badge b-neutral" style="text-transform:capitalize">${kolLabel}</span>`,body:hasKol?d.kolInsight?.explanation:'No KOL insight provided.'},
-    {n:5,title:'Evidence vs Insight Gap',badge:null,body:bullets(d.evidenceVsInsightGap)},
-    {n:6,title:'Adoption Signal',badge:`<span class="badge ${levelClass(d.adoptionSignal?.level)}">${d.adoptionSignal?.level}</span>`,body:d.adoptionSignal?.justification},
-    {n:7,title:'Medical Affairs Implication',badge:null,body:bullets(d.medicalAffairsImplication)}
-  ];
+  const text = out.innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.getElementById('copyBtn');
+    btn.textContent = '✓ Copied';
+    setTimeout(() => btn.textContent = 'Copy', 2000);
+  });
+}
+
+function exportPDF() {
+  window.print();
+}
+
+function renderOutput(d, hasKol, signalStatus, signalSource) {
+  document.getElementById('emptyState').style.display = 'none';
+  const out = document.getElementById('outputContent');
+  out.style.display = 'block';
+
+  const ts = new Date().toLocaleString([], { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+  const fi = d.fieldIntelligence || {};
+  const bi = d.businessImpact || {};
+  const insightLabel = (fi.insightType || 'insight').replace(/-/g, ' ');
+  const isRecurring = signalStatus === 'recurring';
+  const signalBadgeClass = isRecurring ? 'b-recurring' : 'b-first';
+  const signalBadgeLabel = isRecurring ? '⚑ Recurring signal' : '◎ First report';
+  const sourceLabel = signalSource ? ` · ${signalSource}` : '';
+
+  const actionItems = (d.recommendedActions || []).map((a, i) =>
+    `<li><div class="action-num">${i+1}</div><span>${a}</span></li>`
+  ).join('');
+
+  const bottomItems = (d.bottomLine || []).map(b =>
+    `<div class="bottom-bullet"><div class="bottom-dot"></div><span>${b}</span></div>`
+  ).join('');
+
+  const gapBullets = (d.gapAssessment || []).map(b => `• ${b}`).join('\n');
+
   out.innerHTML = `
-    <div class="output-header"><div class="output-title">Analysis Report</div><div class="output-ts">${ts}</div></div>
-    ${sections.map(s=>`<div class="card"><div class="card-head"><div class="card-num">${s.n}</div><div class="card-title">${s.title}</div>${s.badge||''}</div><div class="card-body">${s.body}</div></div>`).join('')}
-    <div class="bottom-card"><div class="card-head"><div class="card-num">8</div><div class="card-title">Bottom Line</div></div><div class="card-body">${d.bottomLine}</div></div>
-    <div class="footer-note">InsightBridge — Medical Affairs Intelligence Tool · Output is non-promotional and evidence-grounded</div>`;
-  out.scrollIntoView({behavior:'smooth'});
+    <div class="output-header">
+      <div class="output-header-left">
+        <div class="output-title">Intelligence Briefing</div>
+        <div class="output-ts">${ts}${sourceLabel}</div>
+      </div>
+      <div class="export-row">
+        <button class="export-btn btn-copy" id="copyBtn" onclick="copyBriefing()">Copy</button>
+        <button class="export-btn btn-pdf" onclick="exportPDF()">Export PDF</button>
+      </div>
+    </div>
+
+    <!-- Signal context banner -->
+    <div style="display:flex;gap:8px;align-items:center;margin-bottom:0.25rem">
+      <span class="badge ${signalBadgeClass}">${signalBadgeLabel}</span>
+      <span class="badge b-neutral" style="text-transform:capitalize">${insightLabel}</span>
+    </div>
+
+    <!-- 1. FIELD INTELLIGENCE -->
+    <div class="card-field">
+      <div class="card-head">
+        <div class="card-num">1</div>
+        <div class="card-title">Field Intelligence</div>
+      </div>
+      <div class="card-body" style="margin-bottom:0.6rem"><strong>What was heard</strong>
+${fi.whatWasHeard || ''}</div>
+      <div class="card-body"><strong>What it signals</strong>
+${fi.whatItSignals || ''}</div>
+    </div>
+
+    <!-- 2. BUSINESS IMPACT -->
+    <div class="card-impact">
+      <div class="card-head">
+        <div class="card-num">2</div>
+        <div class="card-title">Business Impact</div>
+        <span class="badge ${levelClass(bi.level)}">${bi.level || ''}</span>
+      </div>
+      <div class="card-body">${bi.statement || ''}</div>
+    </div>
+
+    <!-- 3. GAP ASSESSMENT -->
+    <div class="card">
+      <div class="card-head">
+        <div class="card-num">3</div>
+        <div class="card-title">Gap Assessment</div>
+      </div>
+      <div class="card-body">${gapBullets}</div>
+    </div>
+
+    <!-- 4. RECOMMENDED ACTIONS -->
+    <div class="card-actions">
+      <div class="card-head">
+        <div class="card-num" style="background:var(--gold-border);border-color:var(--gold-border);color:#fff">4</div>
+        <div class="card-title">Recommended Actions</div>
+      </div>
+      <ul class="action-list">${actionItems}</ul>
+    </div>
+
+    <!-- 5. BOTTOM LINE -->
+    <div class="card-bottom">
+      <div class="card-head">
+        <div class="card-num" style="background:var(--teal-border);border-color:var(--teal-border);color:#fff">5</div>
+        <div class="card-title" style="color:var(--teal)">Bottom Line</div>
+      </div>
+      <div class="bottom-bullets">${bottomItems}</div>
+    </div>
+
+    <div class="footer-note">InsightBridge — Medical Affairs Intelligence · For internal strategic use</div>
+  `;
+
+  out.scrollIntoView({ behavior: 'smooth' });
 }
 </script>
 </body>
