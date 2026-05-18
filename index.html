@@ -18,7 +18,6 @@
       --accent-mid: #2E6DA4;
       --accent-light: #D6E8F7;
       --gold: #B8860B;
-      --gold-light: #F9F0D8;
       --gold-border: #D4A84B;
       --teal: #1A5C4A;
       --teal-light: #D4EDE6;
@@ -32,344 +31,108 @@
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--paper);
-      color: var(--ink);
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
+    body { font-family: 'DM Sans', sans-serif; background: var(--paper); color: var(--ink); min-height: 100vh; overflow-x: hidden; }
 
     /* ── LANDING ── */
-    #landing {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      position: relative;
-      overflow: hidden;
-    }
+    #landing { min-height: 100vh; display: flex; flex-direction: column; position: relative; overflow: hidden; }
+    .bg-grid { position: absolute; inset: 0; background-image: linear-gradient(var(--rule) 1px, transparent 1px), linear-gradient(90deg, var(--rule) 1px, transparent 1px); background-size: 48px 48px; opacity: 0.45; }
+    .bg-circle { position: absolute; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(46,109,164,0.1) 0%, transparent 70%); top: -100px; right: -150px; pointer-events: none; }
 
-    .bg-grid {
-      position: absolute; inset: 0;
-      background-image:
-        linear-gradient(var(--rule) 1px, transparent 1px),
-        linear-gradient(90deg, var(--rule) 1px, transparent 1px);
-      background-size: 48px 48px;
-      opacity: 0.45;
-    }
-
-    .bg-circle {
-      position: absolute;
-      width: 600px; height: 600px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(46,109,164,0.1) 0%, transparent 70%);
-      top: -100px; right: -150px; pointer-events: none;
-    }
-
-    nav {
-      position: relative; display: flex; align-items: center;
-      justify-content: space-between; padding: 1.5rem 3rem;
-      border-bottom: 1px solid var(--rule);
-      background: rgba(245,242,236,0.85); backdrop-filter: blur(8px);
-    }
-
+    nav { position: relative; display: flex; align-items: center; justify-content: space-between; padding: 1.5rem 3rem; border-bottom: 1px solid var(--rule); background: rgba(245,242,236,0.85); backdrop-filter: blur(8px); }
     .logo { font-family: 'DM Serif Display', serif; font-size: 1.3rem; letter-spacing: -0.01em; color: var(--accent); }
     .logo span { color: var(--gold); }
+    .nav-pill { font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-muted); background: var(--paper-warm); border: 1px solid var(--rule); padding: 6px 14px; border-radius: 100px; }
 
-    .nav-pill {
-      font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
-      color: var(--ink-muted); background: var(--paper-warm);
-      border: 1px solid var(--rule); padding: 6px 14px; border-radius: 100px;
-    }
-
-    .hero {
-      position: relative; flex: 1; display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      text-align: center; padding: 4rem 2rem; gap: 2rem;
-    }
-
-    .eyebrow {
-      font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--accent-mid); border: 1px solid var(--accent-light);
-      background: var(--accent-light); padding: 5px 16px; border-radius: 100px;
-      opacity: 0; animation: fadeUp 0.6s ease 0.1s forwards;
-    }
-
-    .hero-title {
-      font-family: 'DM Serif Display', serif;
-      font-size: clamp(2.8rem, 6vw, 5rem);
-      line-height: 1.08; letter-spacing: -0.02em; color: var(--ink);
-      max-width: 700px; opacity: 0; animation: fadeUp 0.7s ease 0.25s forwards;
-    }
+    .hero { position: relative; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 4rem 2rem; gap: 2rem; }
+    .eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-mid); border: 1px solid var(--accent-light); background: var(--accent-light); padding: 5px 16px; border-radius: 100px; opacity: 0; animation: fadeUp 0.6s ease 0.1s forwards; }
+    .hero-title { font-family: 'DM Serif Display', serif; font-size: clamp(2.8rem, 6vw, 5rem); line-height: 1.08; letter-spacing: -0.02em; color: var(--ink); max-width: 700px; opacity: 0; animation: fadeUp 0.7s ease 0.25s forwards; }
     .hero-title em { font-style: italic; color: var(--accent); }
-
-    .hero-sub {
-      font-size: 1.05rem; font-weight: 300; color: var(--ink-soft);
-      max-width: 520px; line-height: 1.7;
-      opacity: 0; animation: fadeUp 0.7s ease 0.4s forwards;
-    }
-
-    .cta-row {
-      display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
-      opacity: 0; animation: fadeUp 0.7s ease 0.55s forwards;
-    }
-
-    .btn-primary {
-      font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500;
-      padding: 13px 28px; background: var(--accent); color: #fff;
-      border: none; border-radius: 6px; cursor: pointer;
-      transition: background 0.18s, transform 0.12s;
-    }
+    .hero-sub { font-size: 1.05rem; font-weight: 300; color: var(--ink-soft); max-width: 520px; line-height: 1.7; opacity: 0; animation: fadeUp 0.7s ease 0.4s forwards; }
+    .cta-row { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; opacity: 0; animation: fadeUp 0.7s ease 0.55s forwards; }
+    .btn-primary { font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; padding: 13px 28px; background: var(--accent); color: #fff; border: none; border-radius: 6px; cursor: pointer; transition: background 0.18s, transform 0.12s; }
     .btn-primary:hover { background: #122944; transform: translateY(-1px); }
-
-    .btn-secondary {
-      font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500;
-      padding: 13px 28px; background: transparent; color: var(--ink-soft);
-      border: 1px solid var(--rule); border-radius: 6px; cursor: pointer;
-      transition: border-color 0.18s, color 0.18s;
-    }
+    .btn-secondary { font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; padding: 13px 28px; background: transparent; color: var(--ink-soft); border: 1px solid var(--rule); border-radius: 6px; cursor: pointer; transition: border-color 0.18s, color 0.18s; }
     .btn-secondary:hover { border-color: var(--ink-soft); color: var(--ink); }
-
-    .sample-row {
-      display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center;
-      opacity: 0; animation: fadeUp 0.7s ease 0.65s forwards;
-    }
-
-    .btn-sample {
-      font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 500;
-      padding: 8px 18px; background: transparent; color: var(--ink-muted);
-      border: 1px dashed var(--rule); border-radius: 6px; cursor: pointer;
-      transition: border-color 0.18s, color 0.18s;
-    }
+    .sample-row { display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; opacity: 0; animation: fadeUp 0.7s ease 0.65s forwards; }
+    .btn-sample { font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 500; padding: 8px 18px; background: transparent; color: var(--ink-muted); border: 1px dashed var(--rule); border-radius: 6px; cursor: pointer; transition: border-color 0.18s, color 0.18s; }
     .btn-sample:hover { border-color: var(--accent-mid); color: var(--accent-mid); }
 
-    .feature-strip {
-      position: relative; display: flex; gap: 0;
-      border-top: 1px solid var(--rule);
-      background: rgba(245,242,236,0.9);
-      opacity: 0; animation: fadeUp 0.7s ease 0.75s forwards;
-    }
-
+    .feature-strip { position: relative; display: flex; gap: 0; border-top: 1px solid var(--rule); background: rgba(245,242,236,0.9); opacity: 0; animation: fadeUp 0.7s ease 0.75s forwards; }
     .feature { flex: 1; padding: 1.5rem 2rem; border-right: 1px solid var(--rule); text-align: left; }
     .feature:last-child { border-right: none; }
     .feature-label { font-size: 10px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 6px; }
     .feature-text { font-size: 13px; color: var(--ink-soft); line-height: 1.5; }
 
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(16px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
 
     /* ── APP ── */
     #app { display: none; min-height: 100vh; flex-direction: column; }
     #app.visible { display: flex; }
-
-    .app-nav {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 1rem 2.5rem; border-bottom: 1px solid var(--rule);
-      background: var(--paper); position: sticky; top: 0; z-index: 10;
-    }
-
-    .back-btn {
-      font-size: 13px; color: var(--ink-muted); background: none; border: none;
-      cursor: pointer; display: flex; align-items: center; gap: 6px;
-      font-family: 'DM Sans', sans-serif; transition: color 0.15s;
-    }
+    .app-nav { display: flex; align-items: center; justify-content: space-between; padding: 1rem 2.5rem; border-bottom: 1px solid var(--rule); background: var(--paper); position: sticky; top: 0; z-index: 10; }
+    .back-btn { font-size: 13px; color: var(--ink-muted); background: none; border: none; cursor: pointer; display: flex; align-items: center; gap: 6px; font-family: 'DM Sans', sans-serif; transition: color 0.15s; }
     .back-btn:hover { color: var(--ink); }
+    .app-body { display: grid; grid-template-columns: 400px 1fr; flex: 1; min-height: 0; }
+    @media (max-width: 860px) { .app-body { grid-template-columns: 1fr; } .output-panel { border-left: none; border-top: 1px solid var(--rule); } }
 
-    .app-body {
-      display: grid; grid-template-columns: 400px 1fr; flex: 1; min-height: 0;
-    }
-
-    @media (max-width: 860px) {
-      .app-body { grid-template-columns: 1fr; }
-      .output-panel { border-left: none; border-top: 1px solid var(--rule); }
-    }
-
-    .input-panel {
-      padding: 2rem; border-right: 1px solid var(--rule);
-      display: flex; flex-direction: column; gap: 1.25rem;
-      background: var(--paper-warm); overflow-y: auto;
-    }
-
+    .input-panel { padding: 2rem; border-right: 1px solid var(--rule); display: flex; flex-direction: column; gap: 1.25rem; background: var(--paper-warm); overflow-y: auto; }
     .panel-title { font-family: 'DM Serif Display', serif; font-size: 1.1rem; color: var(--accent); }
     .panel-sub { font-size: 12px; color: var(--ink-muted); line-height: 1.5; margin-top: 2px; }
 
-    .field label {
-      display: block; font-size: 11px; font-weight: 500;
-      letter-spacing: 0.08em; text-transform: uppercase;
-      color: var(--ink-muted); margin-bottom: 6px;
-    }
-
-    .field textarea {
-      width: 100%; font-family: 'DM Sans', sans-serif;
-      font-size: 13.5px; font-weight: 300; color: var(--ink);
-      background: var(--paper); border: 1px solid var(--rule);
-      border-radius: 6px; padding: 10px 12px; resize: vertical;
-      line-height: 1.65; transition: border-color 0.15s;
-    }
+    .field label { display: block; font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 6px; }
+    .field textarea { width: 100%; font-family: 'DM Sans', sans-serif; font-size: 13.5px; font-weight: 300; color: var(--ink); background: var(--paper); border: 1px solid var(--rule); border-radius: 6px; padding: 10px 12px; resize: vertical; line-height: 1.65; transition: border-color 0.15s; }
     .field textarea:focus { outline: none; border-color: var(--accent-mid); }
     #evidenceInput { min-height: 140px; }
     #kolInput { min-height: 80px; }
 
-    .field select {
-      width: 100%; font-family: 'DM Sans', sans-serif;
-      font-size: 13.5px; font-weight: 300; color: var(--ink);
-      background: var(--paper); border: 1px solid var(--rule);
-      border-radius: 6px; padding: 9px 12px;
-      transition: border-color 0.15s; cursor: pointer;
-      appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236E7580' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 12px center;
-    }
+    .field select { width: 100%; font-family: 'DM Sans', sans-serif; font-size: 13.5px; font-weight: 300; color: var(--ink); background: var(--paper); border: 1px solid var(--rule); border-radius: 6px; padding: 9px 12px; transition: border-color 0.15s; cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236E7580' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; }
     .field select:focus { outline: none; border-color: var(--accent-mid); }
 
-    .field input[type="text"] {
-      width: 100%; font-family: 'DM Sans', sans-serif;
-      font-size: 13.5px; font-weight: 300; color: var(--ink);
-      background: var(--paper); border: 1px solid var(--rule);
-      border-radius: 6px; padding: 9px 12px;
-      transition: border-color 0.15s;
-    }
+    .field input[type="text"] { width: 100%; font-family: 'DM Sans', sans-serif; font-size: 13.5px; font-weight: 300; color: var(--ink); background: var(--paper); border: 1px solid var(--rule); border-radius: 6px; padding: 9px 12px; transition: border-color 0.15s; }
     .field input[type="text"]:focus { outline: none; border-color: var(--accent-mid); }
     .field input::placeholder { color: var(--ink-muted); }
 
-    .signal-row {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;
-    }
-
+    .signal-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
     .sample-links { display: flex; gap: 10px; margin-top: 6px; flex-wrap: wrap; }
-    .sample-btn {
-      font-size: 12px; color: var(--accent-mid); background: none; border: none;
-      cursor: pointer; font-family: 'DM Sans', sans-serif;
-      text-decoration: underline; text-underline-offset: 3px; padding: 0;
-    }
+    .sample-btn { font-size: 12px; color: var(--accent-mid); background: none; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; text-decoration: underline; text-underline-offset: 3px; padding: 0; }
     .sample-btn:hover { color: var(--accent); }
     .sample-divider { font-size: 12px; color: var(--rule); }
 
-    .run-btn {
-      font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500;
-      padding: 13px; background: var(--accent); color: #fff; border: none;
-      border-radius: 6px; cursor: pointer; transition: background 0.18s;
-      display: flex; align-items: center; justify-content: center;
-      gap: 8px; width: 100%;
-    }
+    .run-btn { font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; padding: 13px; background: var(--accent); color: #fff; border: none; border-radius: 6px; cursor: pointer; transition: background 0.18s; display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; }
     .run-btn:hover { background: #122944; }
     .run-btn:disabled { background: #B0B8C4; cursor: not-allowed; }
-
-    .spinner {
-      width: 14px; height: 14px;
-      border: 2px solid rgba(255,255,255,0.35);
-      border-top-color: #fff; border-radius: 50%;
-      animation: spin 0.7s linear infinite;
-      display: inline-block; vertical-align: middle;
-    }
+    .spinner { width: 14px; height: 14px; border: 2px solid rgba(255,255,255,0.35); border-top-color: #fff; border-radius: 50%; animation: spin 0.7s linear infinite; display: inline-block; vertical-align: middle; }
     @keyframes spin { to { transform: rotate(360deg); } }
-
-    .err-msg {
-      font-size: 12px; color: var(--low); background: var(--low-bg);
-      border: 1px solid #E8B8B8; border-radius: 6px; padding: 8px 12px; display: none;
-    }
+    .err-msg { font-size: 12px; color: var(--low); background: var(--low-bg); border: 1px solid #E8B8B8; border-radius: 6px; padding: 8px 12px; display: none; }
 
     /* ── OUTPUT ── */
-    .output-panel {
-      padding: 2rem 2.5rem; overflow-y: auto;
-      display: flex; flex-direction: column; gap: 1rem;
-    }
-
-    .output-empty {
-      flex: 1; display: flex; flex-direction: column; align-items: center;
-      justify-content: center; gap: 1rem; color: var(--ink-muted); text-align: center;
-    }
-
-    .empty-icon {
-      width: 56px; height: 56px; border: 1.5px solid var(--rule); border-radius: 50%;
-      display: flex; align-items: center; justify-content: center; font-size: 22px;
-    }
-
+    .output-panel { padding: 2rem 2.5rem; overflow-y: auto; display: flex; flex-direction: column; gap: 1rem; }
+    .output-empty { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; color: var(--ink-muted); text-align: center; }
+    .empty-icon { width: 56px; height: 56px; border: 1.5px solid var(--rule); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; }
     .empty-text { font-size: 14px; font-weight: 300; max-width: 260px; line-height: 1.6; }
 
-    .output-header {
-      display: flex; align-items: center; justify-content: space-between;
-      padding-bottom: 1rem; border-bottom: 1px solid var(--rule); margin-bottom: 0.25rem;
-      flex-wrap: wrap; gap: 0.75rem;
-    }
-
+    .output-header { display: flex; align-items: center; justify-content: space-between; padding-bottom: 1rem; border-bottom: 1px solid var(--rule); margin-bottom: 0.25rem; flex-wrap: wrap; gap: 0.75rem; }
     .output-header-left { display: flex; align-items: baseline; gap: 12px; }
     .output-title { font-family: 'DM Serif Display', serif; font-size: 1.3rem; color: var(--ink); }
     .output-ts { font-size: 11px; color: var(--ink-muted); letter-spacing: 0.04em; }
-
     .export-row { display: flex; gap: 0.5rem; }
-
-    .export-btn {
-      font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 500;
-      padding: 7px 14px; border-radius: 6px; cursor: pointer;
-      display: flex; align-items: center; gap: 6px; transition: all 0.15s;
-    }
-
-    .btn-copy {
-      background: var(--paper-warm); color: var(--ink-soft);
-      border: 1px solid var(--rule);
-    }
+    .export-btn { font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 500; padding: 7px 14px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; gap: 6px; transition: all 0.15s; }
+    .btn-copy { background: var(--paper-warm); color: var(--ink-soft); border: 1px solid var(--rule); }
     .btn-copy:hover { border-color: var(--ink-muted); color: var(--ink); }
-
-    .btn-pdf {
-      background: var(--accent); color: #fff; border: 1px solid var(--accent);
-    }
+    .btn-pdf { background: var(--accent); color: #fff; border: 1px solid var(--accent); }
     .btn-pdf:hover { background: #122944; }
 
-    /* ── CARDS — clean white with border accents ── */
+    /* ── CARDS — white backgrounds, border accents only ── */
+    .card-field { background: #fff; border: 1px solid var(--rule); border-left: 3px solid var(--teal-border); border-radius: 8px; padding: 1.25rem 1.5rem; }
+    .card-impact { background: #fff; border: 1px solid var(--rule); border-left: 3px solid var(--gold-border); border-radius: 8px; padding: 1.1rem 1.25rem; }
+    .card { background: #fff; border: 1px solid var(--rule); border-radius: 8px; padding: 1.1rem 1.25rem; }
+    .card-actions { background: #fff; border: 1px solid var(--rule); border-left: 3px solid var(--gold-border); border-radius: 8px; padding: 1.1rem 1.25rem; }
+    .card-bottom { background: #fff; border: 1px solid var(--rule); border-left: 3px solid var(--teal-border); border-radius: 8px; padding: 1.25rem 1.5rem; }
 
-    /* Field Intelligence — teal left border */
-    .card-field {
-      background: #fff; border: 1px solid var(--rule);
-      border-left: 3px solid var(--teal-border);
-      border-radius: 8px; padding: 1.25rem 1.5rem;
-    }
-
-    /* Business Impact — gold left border */
-    .card-impact {
-      background: #fff; border: 1px solid var(--rule);
-      border-left: 3px solid var(--gold-border);
-      border-radius: 8px; padding: 1.1rem 1.25rem;
-    }
-
-    /* Gap Assessment — standard */
-    .card {
-      background: #fff; border: 1px solid var(--rule);
-      border-radius: 8px; padding: 1.1rem 1.25rem;
-    }
-
-    /* Recommended Actions — gold left border, white background */
-    .card-actions {
-      background: #fff; border: 1px solid var(--rule);
-      border-left: 3px solid var(--gold-border);
-      border-radius: 8px; padding: 1.1rem 1.25rem;
-    }
-
-    /* Bottom Line — teal left border, white background */
-    .card-bottom {
-      background: #fff; border: 1px solid var(--rule);
-      border-left: 3px solid var(--teal-border);
-      border-radius: 8px; padding: 1.25rem 1.5rem;
-    }
-
-    .card-head {
-      display: flex; align-items: center; gap: 10px; margin-bottom: 0.75rem;
-    }
-
-    .card-num {
-      width: 20px; height: 20px; background: var(--paper-warm);
-      border: 1px solid var(--rule); border-radius: 50%;
-      font-size: 10px; font-weight: 500; color: var(--ink-muted);
-      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-    }
-
-    .card-title {
-      font-size: 10px; font-weight: 500; letter-spacing: 0.1em;
-      text-transform: uppercase; color: var(--ink-muted); flex: 1;
-    }
+    .card-head { display: flex; align-items: center; gap: 10px; margin-bottom: 0.75rem; }
+    .card-num { width: 20px; height: 20px; background: var(--paper-warm); border: 1px solid var(--rule); border-radius: 50%; font-size: 10px; font-weight: 500; color: var(--ink-muted); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .card-title { font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-muted); flex: 1; }
+    .card-body { font-size: 13.5px; font-weight: 300; color: var(--ink-soft); line-height: 1.75; white-space: pre-wrap; }
+    .card-body strong { font-weight: 500; color: var(--ink); }
 
     .badge { font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 100px; }
     .b-high { background: var(--high-bg); color: var(--high); }
@@ -379,68 +142,30 @@
     .b-recurring { background: #FDE8D8; color: #7A2E00; border: 1px solid #E8A87C; }
     .b-first { background: var(--accent-light); color: var(--accent); }
 
-    .card-body {
-      font-size: 13.5px; font-weight: 300; color: var(--ink-soft);
-      line-height: 1.75; white-space: pre-wrap;
-    }
-
-    .card-body strong { font-weight: 500; color: var(--ink); }
-
-    /* Numbered action list */
     .action-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
-    .action-list li {
-      display: flex; gap: 10px; align-items: flex-start;
-      font-size: 13.5px; font-weight: 300; color: var(--ink-soft); line-height: 1.65;
-    }
-    .action-num {
-      width: 20px; height: 20px; border-radius: 50%;
-      background: var(--gold-border); color: #fff;
-      font-size: 10px; font-weight: 500;
-      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-      margin-top: 1px;
-    }
+    .action-list li { display: flex; gap: 10px; align-items: flex-start; font-size: 13.5px; font-weight: 300; color: var(--ink-soft); line-height: 1.65; }
+    .action-num { width: 20px; height: 20px; border-radius: 50%; background: var(--gold-border); color: #fff; font-size: 10px; font-weight: 500; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
 
-    /* Bottom line bullets */
     .bottom-bullets { display: flex; flex-direction: column; gap: 0.6rem; }
-    .bottom-bullet {
-      display: flex; gap: 10px; align-items: flex-start;
-      font-size: 14px; font-weight: 400; color: var(--ink-soft);
-      line-height: 1.65;
-    }
-    .bottom-dot {
-      width: 6px; height: 6px; border-radius: 50%;
-      background: var(--teal-border); flex-shrink: 0; margin-top: 6px;
-    }
+    .bottom-bullet { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; font-weight: 400; color: var(--ink-soft); line-height: 1.65; }
+    .bottom-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--teal-border); flex-shrink: 0; margin-top: 6px; }
 
-    .signal-context-badge {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-size: 11px; font-weight: 500; padding: 4px 12px;
-      border-radius: 100px; margin-bottom: 0.75rem;
-    }
+    .footer-note { font-size: 11px; color: var(--ink-muted); text-align: center; padding: 1rem 0 0.5rem; border-top: 1px solid var(--rule); margin-top: 0.5rem; }
 
-    .footer-note {
-      font-size: 11px; color: var(--ink-muted); text-align: center;
-      padding: 1rem 0 0.5rem; border-top: 1px solid var(--rule); margin-top: 0.5rem;
-    }
-
-    /* ── PRINT / PDF ── */
+    /* ── PRINT ── */
     @media print {
       #landing, .app-nav, .input-panel, .export-row { display: none !important; }
       #app { display: block !important; }
       .app-body { display: block !important; }
       .output-panel { padding: 0; overflow: visible; }
       body { background: #fff; }
-      .card, .card-field, .card-impact, .card-actions, .card-bottom {
-        break-inside: avoid; margin-bottom: 0.75rem;
-      }
-      .card-actions { background: #FDF8EC !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-      .card-bottom { background: #EDF5F2 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .card, .card-field, .card-impact, .card-actions, .card-bottom { break-inside: avoid; margin-bottom: 0.75rem; }
     }
   </style>
 </head>
 <body>
 
-<!-- LANDING PAGE -->
+<!-- LANDING -->
 <div id="landing">
   <div class="bg-grid"></div>
   <div class="bg-circle"></div>
@@ -451,7 +176,7 @@
   <div class="hero">
     <div class="eyebrow">Field Intelligence · Stakeholder Impact</div>
     <h1 class="hero-title">Turn field insights into <em>decisions</em></h1>
-    <p class="hero-sub">InsightBridge helps Medical Affairs professionals translate what they hear in the field into structured intelligence briefings that drive internal action.</p>
+    <p class="hero-sub">InsightBridge helps Medical Affairs professionals translate what they hear in the field into structured intelligence briefings that drive internal action — across diagnostics, pharmaceuticals, vaccines, and medical devices.</p>
     <div class="cta-row">
       <button class="btn-primary" onclick="showApp()">Open the analyzer →</button>
       <button class="btn-secondary" onclick="showAppWithSample(1)">Try a sample case</button>
@@ -468,7 +193,7 @@
     </div>
     <div class="feature">
       <div class="feature-label">Business Impact</div>
-      <div class="feature-text">Connects the insight directly to commercial and strategic implications.</div>
+      <div class="feature-text">Connects the insight to commercial levers specific to your product type.</div>
     </div>
     <div class="feature">
       <div class="feature-label">Pattern Tracking</div>
@@ -481,7 +206,7 @@
   </div>
 </div>
 
-<!-- APP PAGE -->
+<!-- APP -->
 <div id="app">
   <div class="app-nav">
     <button class="back-btn" onclick="showLanding()">← Back</button>
@@ -490,11 +215,20 @@
   </div>
 
   <div class="app-body">
-    <!-- LEFT: INPUTS -->
     <div class="input-panel">
       <div>
         <div class="panel-title">New Briefing</div>
         <div class="panel-sub">Paste clinical evidence and the field insight you gathered. InsightBridge generates a stakeholder-ready intelligence briefing.</div>
+      </div>
+
+      <div class="field">
+        <label>Product Type</label>
+        <select id="productType">
+          <option value="diagnostic">Diagnostic Test</option>
+          <option value="pharmaceutical">Pharmaceutical</option>
+          <option value="vaccine">Vaccine</option>
+          <option value="device">Medical Device</option>
+        </select>
       </div>
 
       <div class="field">
@@ -533,7 +267,6 @@
       </button>
     </div>
 
-    <!-- RIGHT: OUTPUT -->
     <div class="output-panel" id="outputPanel">
       <div class="output-empty" id="emptyState">
         <div class="empty-icon">⌬</div>
@@ -547,25 +280,33 @@
 <script>
 const SAMPLES = {
   1: {
-    evidence: `STUDY: Real-world evaluation of a syndromic multiplex PCR panel for hospital-acquired and ventilator-associated pneumonia in ICU patients.
-
-METHODS: Prospective observational study, 79 specimens from 67 ICU patients. Panel detects 35+ bacterial and viral pathogens and key antibiotic resistance genes. Results available within 2–5 hours vs. 48–72 hours for standard culture.
-
-RESULTS: Panel was positive in 30/79 specimens including 5 viral-only detections and 5 resistance gene detections. Concordance with culture: 86.1%. Negative predictive value: 100%. Following panel results, antibiotic de-escalation was appropriate in the majority of eligible patients. However, only 41.6% of eligible non-immunocompromised patients actually had antibiotics de-escalated. No adverse outcomes were observed in patients who received appropriately narrowed antibiotic therapy.`,
+    product: 'diagnostic',
+    evidence: `STUDY: Real-world evaluation of a syndromic multiplex PCR panel for hospital-acquired and ventilator-associated pneumonia in ICU patients.\n\nMETHODS: Prospective observational study, 79 specimens from 67 ICU patients. Panel detects 35+ bacterial and viral pathogens and key antibiotic resistance genes. Results available within 2–5 hours vs. 48–72 hours for standard culture.\n\nRESULTS: Panel was positive in 30/79 specimens including 5 viral-only detections and 5 resistance gene detections. Concordance with culture: 86.1%. Negative predictive value: 100%. Only 41.6% of eligible non-immunocompromised patients had antibiotics de-escalated following panel results. No adverse outcomes were observed in patients who received appropriately narrowed antibiotic therapy.`,
     kol: `"Look, the panel works — I trust the data. But when I get a viral-only result on a patient who looks sick, I'm not stopping antibiotics. My attendings won't either. Nobody wants to be the one who pulled antibiotics and had the patient crash overnight. The science is there but the culture on the floor isn't."`,
     status: 'first',
     source: 'Academic Medical Center, Northeast'
   },
   2: {
-    evidence: `STUDY: Real-world evaluation of a syndromic multiplex PCR panel for hospital-acquired and ventilator-associated pneumonia in ICU patients.
-
-METHODS: Prospective observational study, 79 specimens from 67 ICU patients. Panel detects 35+ bacterial and viral pathogens and key antibiotic resistance genes. Results available within 2–5 hours vs. 48–72 hours for standard culture.
-
-RESULTS: Panel was positive in 30/79 specimens including 5 viral-only detections and 5 resistance gene detections. Concordance with culture: 86.1%. Negative predictive value: 100%. Following panel results, antibiotic de-escalation was appropriate in the majority of eligible patients. However, only 41.6% of eligible non-immunocompromised patients actually had antibiotics de-escalated. No adverse outcomes were observed in patients who received appropriately narrowed antibiotic therapy.`,
+    product: 'diagnostic',
+    evidence: `STUDY: Real-world evaluation of a syndromic multiplex PCR panel for hospital-acquired and ventilator-associated pneumonia in ICU patients.\n\nMETHODS: Prospective observational study, 79 specimens from 67 ICU patients. Panel detects 35+ bacterial and viral pathogens and key antibiotic resistance genes. Results available within 2–5 hours vs. 48–72 hours for standard culture.\n\nRESULTS: Panel was positive in 30/79 specimens including 5 viral-only detections and 5 resistance gene detections. Concordance with culture: 86.1%. Negative predictive value: 100%. Only 41.6% of eligible non-immunocompromised patients had antibiotics de-escalated following panel results. No adverse outcomes were observed in patients who received appropriately narrowed antibiotic therapy.`,
     kol: `"We have the panel. We use it. But honestly the workflow hasn't really changed that much. The attendings still want to treat. It's just the way it is in the ICU — you don't stop antibiotics on a sick patient based on a test result."`,
     status: 'recurring',
     source: 'Community Hospital, Southeast'
   }
+};
+
+const PRODUCT_CONTEXT = {
+  diagnostic: `This company sells a diagnostic panel and the instrumentation required to run it. Adoption requires physicians to change clinical behavior based on test results, institutions to purchase the instrument and integrate it into workflow, and payors to be convinced the test improves outcomes and is cost effective. Frame all business impact and recommended actions through these three levers.`,
+  pharmaceutical: `This company sells a prescription drug. Adoption requires physicians to prescribe appropriately for the right patients, patients to access and adhere to therapy, and payors to reimburse at a price that reflects clinical value. Frame all business impact and recommended actions through these three levers.`,
+  vaccine: `This company sells a vaccine. Adoption requires physicians and health systems to recommend and administer it, patients or caregivers to accept it, and public health bodies or payors to include it in formularies or immunization schedules. Frame all business impact and recommended actions through these three levers.`,
+  device: `This company sells a medical device. Adoption requires physicians or proceduralists to be trained and confident using it, institutions to purchase and integrate it into clinical workflow, and payors to reimburse the procedure or device. Frame all business impact and recommended actions through these three levers.`
+};
+
+const PRODUCT_LABELS = {
+  diagnostic: 'Diagnostic Test',
+  pharmaceutical: 'Pharmaceutical',
+  vaccine: 'Vaccine',
+  device: 'Medical Device'
 };
 
 function showApp() {
@@ -579,6 +320,7 @@ function showLanding() {
 }
 function loadSample(n) {
   const s = SAMPLES[n];
+  document.getElementById('productType').value = s.product;
   document.getElementById('evidenceInput').value = s.evidence;
   document.getElementById('kolInput').value = s.kol;
   document.getElementById('signalStatus').value = s.status;
@@ -588,9 +330,10 @@ function loadSample(n) {
 async function runAnalysis() {
   const evidence = document.getElementById('evidenceInput').value.trim();
   const kol = document.getElementById('kolInput').value.trim();
+  const productType = document.getElementById('productType').value;
   const signalStatus = document.getElementById('signalStatus').value;
   const signalSource = document.getElementById('signalSource').value.trim();
-  const apiKey = "sk-ant-api03-" + "gOgUJww7j1O2ggh2SitzZEey2yaxC1fQsQnT-af_p2_78ymWEk8ra4RKYsRw9QGaKWmIe6ffj-iq-UpEpfSVRg-mfRLnwAA";
+  const apiKey = "sk-ant-api03-" + "hObrn7Xh7sEoehHXO5SZRTIs6cpjtKSuU6ax4A4mWwy6f3DM7Mnf_-wfQ-gNfaBIXDPpZwY8Iae-5fGJMtVnPQ-_OMMvAAA";
   const errMsg = document.getElementById('errMsg');
   const runBtn = document.getElementById('runBtn');
   const btnLabel = document.getElementById('btnLabel');
@@ -602,20 +345,22 @@ async function runAnalysis() {
   btnLabel.innerHTML = '<span class="spinner"></span> Generating briefing…';
 
   const signalContext = signalStatus === 'recurring'
-    ? `This is a RECURRING signal — it has been heard before from other sites or HCPs. Weight the urgency and business impact accordingly.`
-    : `This is a FIRST REPORT of this insight. Note that it may or may not represent a broader pattern.`;
+    ? `This is a RECURRING signal — it has been heard before from other sites or HCPs. Weight the urgency and business impact accordingly. Make clear this is a pattern, not an anecdote.`
+    : `This is a FIRST REPORT of this insight. Note that it may or may not represent a broader pattern and flag that further field validation is warranted.`;
 
   const sourceContext = signalSource ? `Source / Location: ${signalSource}` : '';
 
   const system = `You are a Medical Affairs intelligence analyst preparing a briefing for internal company stakeholders — Medical Directors, Brand teams, HEOR leads, and commercial leadership.
 
-These stakeholders already know the science and the clinical landscape. Do not teach them. Do not explain basic concepts.
+These stakeholders already know the science and the clinical landscape. Do not teach them. Do not explain basic concepts. Do not summarize the clinical evidence.
 
 Your job is to communicate:
 1. What was heard in the field and what it truly signals strategically
-2. Why it matters to the company — this company sells a multiplex diagnostic panel AND the instrumentation required to run it. Adoption requires physicians to change behavior, institutions to purchase the instrument, and payors to be convinced the test improves outcomes and is cost-effective. Every insight has implications for one or more of these levers.
+2. Why it matters to the company commercially
 3. Where the gap between evidence and physician perception creates a business problem
-4. What Medical Affairs should do — be specific, be actionable, make clear the unique role Medical Affairs plays that sales and marketing cannot
+4. What Medical Affairs should do — specific, actionable, and distinct from what sales or marketing can do
+
+${PRODUCT_CONTEXT[productType] || PRODUCT_CONTEXT.diagnostic}
 
 ${signalContext}
 ${sourceContext}
@@ -625,18 +370,16 @@ Respond ONLY with valid JSON, no markdown, no preamble:
   "fieldIntelligence": {
     "whatWasHeard": "1-2 sentences in plain language",
     "whatItSignals": "1-2 sentences — the strategic implication, not a restatement",
-    "insightType": "adoption barrier|behavior change barrier|reimbursement concern|instrument access barrier|misconception|competitive signal|unmet need|other"
+    "insightType": "adoption barrier|behavior change barrier|reimbursement concern|access barrier|misconception|competitive signal|unmet need|other"
   },
   "businessImpact": {
     "level": "High|Moderate|Low",
-    "statement": "2-3 sentences connecting this insight to the company's commercial levers — physician adoption, institutional purchase, or payor reimbursement"
+    "statement": "2-3 sentences connecting this insight to the company's specific commercial levers"
   },
   "gapAssessment": ["bullet 1", "bullet 2", "bullet 3"],
   "recommendedActions": ["action 1", "action 2", "action 3", "action 4"],
   "bottomLine": ["decision point 1", "decision point 2", "decision point 3"]
 }`;
-
-  const userMsg = `Clinical Evidence:\n${evidence}\n\nField Insight:\n${kol || '[None provided]'}`;
 
   try {
     const res = await fetch('https://api.anthropic.com/v1/messages', {
@@ -651,7 +394,7 @@ Respond ONLY with valid JSON, no markdown, no preamble:
         model: 'claude-opus-4-5',
         max_tokens: 1400,
         system,
-        messages: [{ role: 'user', content: userMsg }]
+        messages: [{ role: 'user', content: `Clinical Evidence:\n${evidence}\n\nField Insight:\n${kol || '[None provided]'}` }]
       })
     });
 
@@ -659,7 +402,7 @@ Respond ONLY with valid JSON, no markdown, no preamble:
     if (data.error) { showErr(data.error.message); return; }
     const raw = data.content.map(i => i.text || '').join('');
     const parsed = JSON.parse(raw.replace(/```json|```/g, '').trim());
-    renderOutput(parsed, !!kol, signalStatus, signalSource);
+    renderOutput(parsed, !!kol, signalStatus, signalSource, productType);
   } catch(e) {
     showErr('Analysis failed. Please try again.');
   } finally {
@@ -683,19 +426,16 @@ function levelClass(l) {
 
 function copyBriefing() {
   const out = document.getElementById('outputContent');
-  const text = out.innerText;
-  navigator.clipboard.writeText(text).then(() => {
+  navigator.clipboard.writeText(out.innerText).then(() => {
     const btn = document.getElementById('copyBtn');
     btn.textContent = '✓ Copied';
     setTimeout(() => btn.textContent = 'Copy', 2000);
   });
 }
 
-function exportPDF() {
-  window.print();
-}
+function exportPDF() { window.print(); }
 
-function renderOutput(d, hasKol, signalStatus, signalSource) {
+function renderOutput(d, hasKol, signalStatus, signalSource, productType) {
   document.getElementById('emptyState').style.display = 'none';
   const out = document.getElementById('outputContent');
   out.style.display = 'block';
@@ -708,14 +448,13 @@ function renderOutput(d, hasKol, signalStatus, signalSource) {
   const signalBadgeClass = isRecurring ? 'b-recurring' : 'b-first';
   const signalBadgeLabel = isRecurring ? '⚑ Recurring signal' : '◎ First report';
   const sourceLabel = signalSource ? ` · ${signalSource}` : '';
+  const productLabel = PRODUCT_LABELS[productType] || '';
 
   const actionItems = (d.recommendedActions || []).map((a, i) =>
-    `<li><div class="action-num">${i+1}</div><span>${a}</span></li>`
-  ).join('');
+    `<li><div class="action-num">${i+1}</div><span>${a}</span></li>`).join('');
 
   const bottomItems = (d.bottomLine || []).map(b =>
-    `<div class="bottom-bullet"><div class="bottom-dot"></div><span>${b}</span></div>`
-  ).join('');
+    `<div class="bottom-bullet"><div class="bottom-dot"></div><span>${b}</span></div>`).join('');
 
   const gapBullets = (d.gapAssessment || []).map(b => `• ${b}`).join('\n');
 
@@ -731,13 +470,12 @@ function renderOutput(d, hasKol, signalStatus, signalSource) {
       </div>
     </div>
 
-    <!-- Signal context banner -->
-    <div style="display:flex;gap:8px;align-items:center;margin-bottom:0.25rem">
+    <div style="display:flex;gap:8px;align-items:center;margin-bottom:0.25rem;flex-wrap:wrap">
       <span class="badge ${signalBadgeClass}">${signalBadgeLabel}</span>
       <span class="badge b-neutral" style="text-transform:capitalize">${insightLabel}</span>
+      <span class="badge b-neutral">${productLabel}</span>
     </div>
 
-    <!-- 1. FIELD INTELLIGENCE -->
     <div class="card-field">
       <div class="card-head">
         <div class="card-num">1</div>
@@ -749,7 +487,6 @@ ${fi.whatWasHeard || ''}</div>
 ${fi.whatItSignals || ''}</div>
     </div>
 
-    <!-- 2. BUSINESS IMPACT -->
     <div class="card-impact">
       <div class="card-head">
         <div class="card-num">2</div>
@@ -759,7 +496,6 @@ ${fi.whatItSignals || ''}</div>
       <div class="card-body">${bi.statement || ''}</div>
     </div>
 
-    <!-- 3. GAP ASSESSMENT -->
     <div class="card">
       <div class="card-head">
         <div class="card-num">3</div>
@@ -768,7 +504,6 @@ ${fi.whatItSignals || ''}</div>
       <div class="card-body">${gapBullets}</div>
     </div>
 
-    <!-- 4. RECOMMENDED ACTIONS -->
     <div class="card-actions">
       <div class="card-head">
         <div class="card-num" style="background:var(--gold-border);border-color:var(--gold-border);color:#fff">4</div>
@@ -777,7 +512,6 @@ ${fi.whatItSignals || ''}</div>
       <ul class="action-list">${actionItems}</ul>
     </div>
 
-    <!-- 5. BOTTOM LINE -->
     <div class="card-bottom">
       <div class="card-head">
         <div class="card-num" style="background:var(--teal-border);border-color:var(--teal-border);color:#fff">5</div>
